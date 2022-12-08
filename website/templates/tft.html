@@ -1,0 +1,59 @@
+{% extends "base.html" %} {% block title %}TFT Watcher{% endblock %} 
+{% block content%}
+
+<nav class="navbar navbar-light bg-light">
+  <form class="form-inline" method="POST">
+    <input name ="summoner" class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"  >
+    <button class="btn btn-outline-success my-2 my-sm-0" type="submit" value="tft()">Search</button>
+  </form>
+</nav>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Name</th>
+      <th scope="col">Tier</th>
+      <th scope="col">Rank</th>
+      <th scope="col">League Points</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for row  in summoner_info  %}
+      <tr>
+        <th scope="row">{{summoner}}</th>
+        <td>{{row["tier"]}}</td>
+        <td>{{row["rank"]}}</td>
+        <td>{{row["leaguePoints"]}}</td>
+      </tr>
+      {% endfor %}
+  </tbody>
+</table>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Gold Left</th>
+      <th scope="col">Level</th>
+      <th scope="col">Placement</th>
+      <th scope="col">Damage to players</th>
+      <th scope="col">items</th>
+      <th scope="col">Players eliminated</th>
+      <th scope="col">units</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in match_by_id['info']['participants']%}
+      <tr>
+        <td>{{row["gold_left"]}}</td>
+        <td>{{row["level"]}}</td>
+        <td>{{row["placement"]}}</td>
+        <td>{{row["total_damage_to_players"]}}</td>
+        <td>{{row["augments"][0]}}</td>
+        <td>{{row["players_eliminated"]}}</td>
+        <td>{{row["units"][0]["character_id"]}}</td>
+        {% endfor %}
+      </tr>
+        
+      </tr>
+  </tbody>
+</table>
+{% endblock %}

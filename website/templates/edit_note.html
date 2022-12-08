@@ -1,0 +1,8 @@
+{% extends "base.html" %} {% block title %}Edit Note{% endblock %} 
+{% block content%}
+    <form action="/edit_note/{{note.id}}" method="POST">
+        <input style="height:200px;font-size:14pt;" type="text" name ="note" placeholder="note" size ="50" value="{{note.data}}">
+
+        <button>Edit</button>
+    </form>
+    {% endblock %}
